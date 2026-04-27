@@ -53,9 +53,12 @@ const Navbar = () => {
                 src={isScrolled ? '/logo.png' : '/logo-light.png'}
                 alt="Gössel Elektrotechnik Logo"
                 className="transition-all duration-300"
+                decoding="sync"
+                loading="eager"
                 style={{
   height: isScrolled ? '48px' : '72px',
   width: 'auto',
+  willChange: 'filter',
   filter: isScrolled
     ? 'none'
     : 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.4)) drop-shadow(0 0 20px rgba(245, 158, 11, 0.25))',
@@ -115,6 +118,8 @@ const Navbar = () => {
               src="/logo-light.png"
               alt="Gössel Elektrotechnik Logo"
               className="h-12"
+              decoding="sync"
+              loading="eager"
             />
             <button
               onClick={() => setIsMobileMenuOpen(false)}
