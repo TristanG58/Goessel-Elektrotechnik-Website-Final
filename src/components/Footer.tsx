@@ -23,7 +23,7 @@ const Footer = () => {
           <div className="col-span-2 lg:col-span-2">
             <div className="flex items-center mb-4 md:mb-6">
               <img
-                src="/logo.png"
+                src="/logo-light.png"
                 alt="Gössel Elektrotechnik Logo"
                 className="h-10 md:h-12"
               />
