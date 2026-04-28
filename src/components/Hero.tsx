@@ -27,7 +27,9 @@ const LightningParticles = () => {
   // Initialize particles with staggered delays
   const initParticles = useCallback((width: number, height: number) => {
     const particles: Particle[] = []
-    for (let i = 0; i < 30; i++) {
+    const isMobile = window.innerWidth < 768
+    const count = isMobile ? 12 : 30
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -60,7 +62,7 @@ const LightningParticles = () => {
       }
     }
     resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+    window.addEventListener('resize', resizeCanvas, { passive: true })
 
     if (!isInitializedRef.current) {
       particlesRef.current = initParticles(canvas.width, canvas.height)
@@ -154,7 +156,7 @@ const LightningParticles = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none z-10"
-      style={{ mixBlendMode: 'screen' }}
+      style={{ mixBlendMode: 'screen', willChange: 'transform' }}
     />
   )
 }

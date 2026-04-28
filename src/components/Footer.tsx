@@ -25,7 +25,9 @@ const Footer = () => {
               <img
                 src="/logo-light.png"
                 alt="Gössel Elektrotechnik Logo"
-                className="h-10 md:h-12"
+                width={3543}
+                height={832}
+                className="h-10 md:h-12 w-auto"
               />
             </div>
             <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4 md:mb-6 max-w-md">

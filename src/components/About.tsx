@@ -19,6 +19,8 @@ const About = () => {
               <img
                 src="/chef.jpg"
                 alt="Falk Gössel - Elektromeister"
+                width={1600}
+                height={1200}
                 className="w-full h-full object-cover object-top"
               />
               {/* Decorative Elements */}

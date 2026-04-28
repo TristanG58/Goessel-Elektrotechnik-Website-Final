@@ -11,7 +11,7 @@ const Navbar = () => {
     }
     // Check initial scroll position on mount
     handleScroll()
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -52,6 +52,8 @@ const Navbar = () => {
               <img
                 src={isScrolled ? '/logo.png' : '/logo-light.png'}
                 alt="Gössel Elektrotechnik Logo"
+                width={3543}
+                height={832}
                 className="transition-all duration-300"
                 decoding="sync"
                 loading="eager"
@@ -117,7 +119,9 @@ const Navbar = () => {
             <img
               src="/logo-light.png"
               alt="Gössel Elektrotechnik Logo"
-              className="h-12"
+              width={3543}
+              height={832}
+              className="h-12 w-auto"
               decoding="sync"
               loading="eager"
             />
