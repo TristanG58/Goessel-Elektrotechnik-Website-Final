@@ -46,6 +46,8 @@ const LightningParticles = () => {
   }, [])
 
   useEffect(() => {
+    if (window.innerWidth < 768) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -152,6 +154,8 @@ const LightningParticles = () => {
     }
   }, [initParticles])
 
+  if (typeof window !== 'undefined' && window.innerWidth < 768) return null
+
   return (
     <canvas
       ref={canvasRef}
@@ -173,6 +177,17 @@ const Hero = () => {
 
   useEffect(() => {
     if (!headlineRef.current) return
+
+    if (window.innerWidth < 768) {
+      gsap.from(headlineRef.current, {
+        opacity: 0,
+        y: 12,
+        duration: 0.45,
+        ease: 'power2.out',
+        delay: 0.05,
+      })
+      return
+    }
 
     const split = new SplitText(headlineRef.current, {
       type: 'lines, words',
@@ -217,10 +232,10 @@ const Hero = () => {
 
         {/* Gradient Orbs */}
         {/* Small Neon Accent Dots */}
-        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-accent/35 rounded-full blur-xl animate-pulse-slow" />
-        <div className="absolute top-1/2 right-12 w-8 h-8 bg-accent/35 rounded-full blur-xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-2/3 right-1/3 w-10 h-10 bg-accent/35 rounded-full blur-xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/40 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-accent/35 rounded-full blur-lg md:blur-xl md:animate-pulse-slow" />
+        <div className="absolute top-1/2 right-12 w-8 h-8 bg-accent/35 rounded-full blur-lg md:blur-xl md:animate-pulse-slow" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-2/3 right-1/3 w-10 h-10 bg-accent/35 rounded-full blur-lg md:blur-xl md:animate-pulse-slow" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/40 rounded-full blur-2xl md:blur-3xl md:animate-pulse-slow" style={{ animationDelay: '1s' }} />
 
         {/* Circuit Lines Decoration */}
         <div className="absolute top-20 right-20 w-64 h-64 opacity-20 hidden lg:block">
