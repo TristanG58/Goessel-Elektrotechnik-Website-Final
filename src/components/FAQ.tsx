@@ -8,6 +8,7 @@ interface FAQItem {
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   const faqs: FAQItem[] = [
     {
@@ -46,7 +47,7 @@ const FAQ = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-primary mb-3 md:mb-6 reveal">
               Häufige <span className="text-accent">Fragen</span>
             </h2>
-            <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: '0.1s' }}>
+            <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: isMobile ? '0s' : '0.1s' }}>
               Hier finden Sie Antworten auf die wichtigsten Fragen.
             </p>
           </div>
@@ -57,7 +58,7 @@ const FAQ = () => {
               <div
                 key={index}
                 className="border border-gray-200 rounded-lg md:rounded-xl overflow-hidden reveal"
-                style={{ transitionDelay: `${(index + 2) * 0.1}s` }}
+                style={{ transitionDelay: isMobile ? '0s' : `${(index + 2) * 0.1}s` }}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -83,7 +84,7 @@ const FAQ = () => {
           </div>
 
           {/* Additional CTA */}
-          <div className="mt-8 md:mt-12 text-center reveal" style={{ transitionDelay: '0.7s' }}>
+          <div className="mt-8 md:mt-12 text-center reveal" style={{ transitionDelay: isMobile ? '0s' : '0.7s' }}>
             <p className="text-sm md:text-base text-text-body mb-3 md:mb-4">
               Haben Sie eine andere Frage? Rufen Sie mich einfach an!
             </p>

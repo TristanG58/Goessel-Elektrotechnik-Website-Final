@@ -96,7 +96,7 @@ const BookingForm = () => {
           </div>
 
           {/* Form Side */}
-          <div className="reveal" style={{ transitionDelay: '0.2s' }}>
+          <div className="reveal" style={{ transitionDelay: typeof window !== 'undefined' && window.innerWidth < 768 ? '0s' : '0.2s' }}>
             <div className="bg-white rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 shadow-2xl">
               {isSubmitted ? (
                 <div className="text-center py-8 md:py-12">

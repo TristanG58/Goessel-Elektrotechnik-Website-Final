@@ -1,9 +1,4 @@
-import { useEffect } from 'react'
 import { Phone, ClipboardList, Wrench } from 'lucide-react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const Process = () => {
   const steps = [
@@ -27,27 +22,7 @@ const Process = () => {
     },
   ]
 
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768
-    const triggers = ScrollTrigger.batch('.process-step', {
-      onEnter: (elements) => {
-        gsap.from(elements, {
-          y: isMobile ? 25 : 50,
-          opacity: 0,
-          duration: isMobile ? 0.35 : 0.55,
-          stagger: 0.15,
-          ease: 'power3.out',
-          overwrite: true,
-        })
-      },
-      start: isMobile ? 'top 99%' : 'top 82%',
-      once: true,
-    })
-
-    return () => {
-      triggers.forEach((t) => t.kill())
-    }
-  }, [])
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   return (
     <section className="py-12 md:py-20 lg:py-28 bg-white">
@@ -57,13 +32,13 @@ const Process = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-primary mb-3 md:mb-6 reveal">
             In 3 Schritten zu Ihrer <span className="text-accent">Lösung</span>
           </h2>
-          <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: '0.1s' }}>
+          <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: isMobile ? '0s' : '0.1s' }}>
             Unkompliziert und transparent – so arbeiten wir zusammen.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="process-container relative">
+        <div className="relative">
           {/* Connection Line (Desktop) */}
           <div className="hidden lg:block absolute top-24 left-1/2 -translate-x-1/2 w-2/3 h-0.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
 
@@ -74,7 +49,8 @@ const Process = () => {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="process-step relative flex md:flex-col items-start md:items-center text-left md:text-center"
+                className="relative flex md:flex-col items-start md:items-center text-left md:text-center reveal"
+                style={{ transitionDelay: isMobile ? '0s' : `${(index + 2) * 0.15}s` }}
               >
                 {/* Mobile: Icon on left */}
                 <div className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white border-2 border-accent flex items-center justify-center shadow-lg relative z-10 mr-4 md:mr-0 md:mb-6">

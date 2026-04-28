@@ -1,10 +1,9 @@
 import { Phone, Calendar, Award, Clock, Shield } from 'lucide-react'
-import { useEffect, useLayoutEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(SplitText, ScrollTrigger)
+gsap.registerPlugin(SplitText)
 
 // Particle interface with lifecycle for smooth fade in/out
 interface Particle {
@@ -162,10 +161,6 @@ const LightningParticles = () => {
 
 const Hero = () => {
   const headlineRef = useRef<HTMLHeadingElement>(null)
-  const subRef = useRef<HTMLParagraphElement>(null)
-  const btn1Ref = useRef<HTMLButtonElement>(null)
-  const btn2Ref = useRef<HTMLAnchorElement>(null)
-  const badgesRef = useRef<HTMLDivElement>(null)
 
   const scrollToBooking = () => {
     const element = document.querySelector('#termin')
@@ -174,58 +169,32 @@ const Hero = () => {
     }
   }
 
-  useLayoutEffect(() => {
-    if (
-      !headlineRef.current ||
-      !subRef.current ||
-      !btn1Ref.current ||
-      !btn2Ref.current ||
-      !badgesRef.current
-    ) {
-      return
-    }
+  useEffect(() => {
+    if (!headlineRef.current) return
 
-    const split = new SplitText(headlineRef.current, { type: 'words' })
+    const split = new SplitText(headlineRef.current, {
+      type: 'lines, words',
+    })
 
-    gsap.set(split.words, { opacity: 0, y: 40 })
-    gsap.set([subRef.current, btn1Ref.current, btn2Ref.current], { opacity: 0, y: 20 })
-    gsap.set(badgesRef.current.children, { opacity: 0, y: 15 })
+    split.lines.forEach((line) => {
+      const el = line as HTMLElement
+      el.style.overflow = 'hidden'
+      el.style.paddingBottom = '0.12em'
+      el.style.marginBottom = '-0.12em'
+    })
 
+    gsap.set(split.words, { yPercent: 115, opacity: 0, rotate: 4 })
     gsap.to(split.words, {
-      y: 0,
+      yPercent: 0,
       opacity: 1,
-      duration: 0.7,
-      stagger: 0.08,
-      ease: 'power3.out',
-      delay: 0.1,
-    })
-    gsap.to(subRef.current, {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      delay: 0.55,
-      ease: 'power2.out',
-    })
-    gsap.to([btn1Ref.current, btn2Ref.current], {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      stagger: 0.12,
-      delay: 0.75,
-      ease: 'power2.out',
-    })
-    gsap.to(badgesRef.current.children, {
-      y: 0,
-      opacity: 1,
-      duration: 0.4,
-      stagger: 0.1,
-      delay: 0.95,
-      ease: 'power2.out',
+      rotate: 0,
+      duration: 1,
+      stagger: 0.07,
+      ease: 'expo.out',
+      delay: 0.15,
     })
 
-    return () => {
-      split.revert()
-    }
+    return () => split.revert()
   }, [])
 
   return (
@@ -288,18 +257,17 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p ref={subRef} className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light mb-5 md:mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light mb-5 md:mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Von der Beratung bis zur Installation – Qualität und perfekter Service aus einer Hand.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-6 md:mb-10">
-            <button ref={btn1Ref} onClick={scrollToBooking} className="btn-primary text-sm md:text-lg w-full sm:w-auto !py-3 !px-5 md:!py-4 md:!px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-6 md:mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <button onClick={scrollToBooking} className="btn-primary text-sm md:text-lg w-full sm:w-auto !py-3 !px-5 md:!py-4 md:!px-8">
               <Calendar className="w-4 h-4 md:w-5 md:h-5" />
               Kostenlosen Termin buchen
             </button>
             <a
-              ref={btn2Ref}
               href="tel:+492375205268"
               className="btn-ghost w-full sm:w-auto !py-2.5 !px-4 md:!py-3 md:!px-6 text-sm md:text-base"
             >
@@ -309,7 +277,7 @@ const Hero = () => {
           </div>
 
           {/* Trust Elements */}
-          <div ref={badgesRef} className="flex flex-wrap items-center justify-center gap-4 md:gap-10 text-white/70">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 text-white/70 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <div className="flex items-center gap-1.5 md:gap-2">
               <Award className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               <span className="text-xs md:text-sm font-medium">Meisterbetrieb</span>

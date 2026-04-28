@@ -105,22 +105,20 @@
 
   .reveal {
     opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Mobile: Sicherstellen dass Elemente nie permanent unsichtbar bleiben */
 @media (max-width: 767px) {
   .reveal {
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
-  }
-
-  /* Fallback: Nach 1.5s alle noch unsichtbaren Elemente einblenden */
-  .reveal:not(.gsap-initialized) {
-    animation: revealFallback 0.3s ease-out 1.5s both;
-  }
-
-  @keyframes revealFallback {
-    to { opacity: 1; transform: translateY(0); }
+    transform: translateY(15px);
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
   }
 }
 

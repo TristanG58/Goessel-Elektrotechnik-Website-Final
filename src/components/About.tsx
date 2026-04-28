@@ -7,6 +7,8 @@ const About = () => {
     { text: 'Balve und Umgebung' },
   ]
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   return (
     <section id="ueber-uns" className="py-12 md:py-20 lg:py-28 bg-bg-light">
       <div className="container-custom">
@@ -31,7 +33,7 @@ const About = () => {
           </div>
 
           {/* Content Side */}
-          <div className="reveal mt-8 lg:mt-0" style={{ transitionDelay: '0.2s' }}>
+          <div className="reveal mt-8 lg:mt-0" style={{ transitionDelay: isMobile ? '0s' : '0.2s' }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-primary mb-4 md:mb-6">
               Ihr Meisterbetrieb in Balve.{' '}
               <span className="text-accent">Seit über 15 Jahren.</span>

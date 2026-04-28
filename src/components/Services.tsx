@@ -1,9 +1,4 @@
-import { useEffect } from 'react'
 import { Plug, Home, Lightbulb, Shield, Sun, Zap } from 'lucide-react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const Services = () => {
   const services = [
@@ -39,27 +34,7 @@ const Services = () => {
     },
   ]
 
-  useEffect(() => {
-    const isMobile = window.innerWidth < 768
-    const triggers = ScrollTrigger.batch('.service-card', {
-      onEnter: (elements) => {
-        gsap.from(elements, {
-          y: isMobile ? 15 : 40,
-          opacity: 0,
-          duration: isMobile ? 0.3 : 0.5,
-          stagger: 0.08,
-          ease: 'power2.out',
-          overwrite: true,
-        })
-      },
-      start: isMobile ? 'top 99%' : 'top 85%',
-      once: true,
-    })
-
-    return () => {
-      triggers.forEach((t) => t.kill())
-    }
-  }, [])
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
 
   return (
     <section id="leistungen" className="py-12 md:py-20 lg:py-28 bg-white">
@@ -69,17 +44,18 @@ const Services = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-primary mb-3 md:mb-6 reveal">
             Was wir für Sie <span className="text-accent">tun</span>
           </h2>
-          <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: '0.1s' }}>
+          <p className="text-sm md:text-base lg:text-lg text-text-body reveal" style={{ transitionDelay: isMobile ? '0s' : '0.1s' }}>
             Vom kleinen Reparaturauftrag bis zur kompletten Hausinstallation – wir sind Ihr verlässlicher Partner für alle Elektroarbeiten.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="service-card bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-sm border border-gray-100 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 group"
+              className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-sm border border-gray-100 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 group reveal"
+              style={{ transitionDelay: isMobile ? '0s' : `${(index + 2) * 0.1}s` }}
             >
               <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-secondary/10 flex items-center justify-center mb-3 md:mb-5 group-hover:bg-accent/10 transition-colors duration-300">
                 <service.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-secondary group-hover:text-accent transition-colors duration-300" />

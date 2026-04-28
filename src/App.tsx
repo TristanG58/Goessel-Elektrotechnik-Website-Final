@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
@@ -11,18 +9,10 @@ import ServiceArea from './components/ServiceArea'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import { Impressum, Datenschutz } from './components/LegalModals'
-import { useGSAPReveal } from './hooks/useGSAPReveal'
+import useScrollReveal from './hooks/useScrollReveal'
 
 function App() {
-  useGSAPReveal()
-
-  useEffect(() => {
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        ScrollTrigger.refresh()
-      })
-    }
-  }, [])
+  useScrollReveal()
 
   return (
     <div className="min-h-screen bg-white">

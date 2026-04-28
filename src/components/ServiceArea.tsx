@@ -43,7 +43,7 @@ const ServiceArea = () => {
           </div>
 
           {/* Map Side */}
-          <div className="reveal" style={{ transitionDelay: '0.2s' }}>
+          <div className="reveal" style={{ transitionDelay: typeof window !== 'undefined' && window.innerWidth < 768 ? '0s' : '0.2s' }}>
             <div className="aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-gray-200">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39817.77025583762!2d7.8212!3d51.3497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b94b5d88b8c1e3%3A0x4263df27bd7b5e0!2s58802%20Balve!5e0!3m2!1sde!2sde!4v1701700000000!5m2!1sde!2sde"
