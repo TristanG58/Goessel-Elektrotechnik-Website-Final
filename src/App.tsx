@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
@@ -10,30 +11,17 @@ import ServiceArea from './components/ServiceArea'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import { Impressum, Datenschutz } from './components/LegalModals'
-import useScrollReveal from './hooks/useScrollReveal'
+import { useGSAPReveal } from './hooks/useGSAPReveal'
 
 function App() {
-  useScrollReveal()
+  useGSAPReveal()
 
-  // Re-run scroll reveal on route changes or dynamic content
   useEffect(() => {
-    const handleLoad = () => {
-      const revealElements = document.querySelectorAll('.reveal')
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active')
-            }
-          })
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      )
-      revealElements.forEach((el) => observer.observe(el))
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh()
+      })
     }
-
-    // Small delay to ensure DOM is ready
-    setTimeout(handleLoad, 100)
   }, [])
 
   return (

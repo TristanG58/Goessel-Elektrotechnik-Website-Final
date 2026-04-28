@@ -1,5 +1,10 @@
 import { Phone, Calendar, Award, Clock, Shield } from 'lucide-react'
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useRef, useCallback } from 'react'
+import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(SplitText, ScrollTrigger)
 
 // Particle interface with lifecycle for smooth fade in/out
 interface Particle {
@@ -156,12 +161,72 @@ const LightningParticles = () => {
 }
 
 const Hero = () => {
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const subRef = useRef<HTMLParagraphElement>(null)
+  const btn1Ref = useRef<HTMLButtonElement>(null)
+  const btn2Ref = useRef<HTMLAnchorElement>(null)
+  const badgesRef = useRef<HTMLDivElement>(null)
+
   const scrollToBooking = () => {
     const element = document.querySelector('#termin')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  useLayoutEffect(() => {
+    if (
+      !headlineRef.current ||
+      !subRef.current ||
+      !btn1Ref.current ||
+      !btn2Ref.current ||
+      !badgesRef.current
+    ) {
+      return
+    }
+
+    const split = new SplitText(headlineRef.current, { type: 'words' })
+
+    gsap.set(split.words, { opacity: 0, y: 40 })
+    gsap.set([subRef.current, btn1Ref.current, btn2Ref.current], { opacity: 0, y: 20 })
+    gsap.set(badgesRef.current.children, { opacity: 0, y: 15 })
+
+    gsap.to(split.words, {
+      y: 0,
+      opacity: 1,
+      duration: 0.7,
+      stagger: 0.08,
+      ease: 'power3.out',
+      delay: 0.1,
+    })
+    gsap.to(subRef.current, {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      delay: 0.55,
+      ease: 'power2.out',
+    })
+    gsap.to([btn1Ref.current, btn2Ref.current], {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      stagger: 0.12,
+      delay: 0.75,
+      ease: 'power2.out',
+    })
+    gsap.to(badgesRef.current.children, {
+      y: 0,
+      opacity: 1,
+      duration: 0.4,
+      stagger: 0.1,
+      delay: 0.95,
+      ease: 'power2.out',
+    })
+
+    return () => {
+      split.revert()
+    }
+  }, [])
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -216,24 +281,25 @@ const Hero = () => {
       <div className="relative z-10 container-custom text-center px-4 pt-20 pb-16 md:pt-24 md:pb-20">
         <div className="max-w-4xl mx-auto">
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight tracking-tight text-white mb-4 md:mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <h1 ref={headlineRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight tracking-tight text-white mb-4 md:mb-6">
             Ihr Meisterbetrieb für{' '}
             <span className="text-accent">zuverlässige</span>{' '}
             Elektrotechnik.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light mb-5 md:mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p ref={subRef} className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 font-light mb-5 md:mb-8 max-w-2xl mx-auto">
             Von der Beratung bis zur Installation – Qualität und perfekter Service aus einer Hand.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-6 md:mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <button onClick={scrollToBooking} className="btn-primary text-sm md:text-lg w-full sm:w-auto !py-3 !px-5 md:!py-4 md:!px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-6 md:mb-10">
+            <button ref={btn1Ref} onClick={scrollToBooking} className="btn-primary text-sm md:text-lg w-full sm:w-auto !py-3 !px-5 md:!py-4 md:!px-8">
               <Calendar className="w-4 h-4 md:w-5 md:h-5" />
               Kostenlosen Termin buchen
             </button>
             <a
+              ref={btn2Ref}
               href="tel:+492375205268"
               className="btn-ghost w-full sm:w-auto !py-2.5 !px-4 md:!py-3 md:!px-6 text-sm md:text-base"
             >
@@ -243,7 +309,7 @@ const Hero = () => {
           </div>
 
           {/* Trust Elements */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 text-white/70 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          <div ref={badgesRef} className="flex flex-wrap items-center justify-center gap-4 md:gap-10 text-white/70">
             <div className="flex items-center gap-1.5 md:gap-2">
               <Award className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               <span className="text-xs md:text-sm font-medium">Meisterbetrieb</span>

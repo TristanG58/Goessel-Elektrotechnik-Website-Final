@@ -6,3 +6,4 @@ dist
 .env.local
 vite.config.ts.timestamp-*
 _recovered_source
+gsap-public
