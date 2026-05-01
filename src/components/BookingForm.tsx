@@ -1,5 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Send, Phone, Clock, Calendar, CreditCard, CheckCircle } from 'lucide-react'
+
+const WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined
+const FORM_KEY = import.meta.env.VITE_FORM_KEY as string | undefined
+const FALLBACK_PHONE = '02375 205268'
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +13,12 @@ const BookingForm = () => {
     address: '',
     type: '',
     message: '',
+    website: '', // Honeypot — sichtbar nur für Bots
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const formMountedAt = useRef<number>(Date.now())
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -19,19 +26,44 @@ const BookingForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setErrorMsg(null)
+
+    if (!WEBHOOK_URL || !FORM_KEY) {
+      setErrorMsg(`Konfigurationsfehler. Bitte rufen Sie uns an: ${FALLBACK_PHONE}`)
+      return
+    }
+
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Form-Key': FORM_KEY,
+        },
+        body: JSON.stringify({
+          ...formData,
+          elapsedMs: Date.now() - formMountedAt.current,
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      if (!res.ok) {
+        throw new Error(`Server-Antwort: ${res.status}`)
+      }
 
-    // Reset after showing success
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: '', phone: '', email: '', address: '', type: '', message: '' })
-    }, 3000)
+      setIsSubmitted(true)
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData({ name: '', phone: '', email: '', address: '', type: '', message: '', website: '' })
+        formMountedAt.current = Date.now()
+      }, 4000)
+    } catch (err) {
+      console.error(err)
+      setErrorMsg(`Etwas ist schiefgelaufen. Bitte rufen Sie uns kurz an: ${FALLBACK_PHONE}`)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const benefits = [
@@ -112,6 +144,20 @@ const BookingForm = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
+                  {/* Honeypot — für Menschen unsichtbar, Bots füllen es */}
+                  <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                    <label htmlFor="website">Website (bitte leer lassen)</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={formData.website}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   <div>
                     <label htmlFor="name" className="block text-xs md:text-sm font-medium text-primary mb-1 md:mb-2">
                       Name *
@@ -212,6 +258,12 @@ const BookingForm = () => {
                       placeholder="Beschreiben Sie kurz Ihr Anliegen..."
                     />
                   </div>
+
+                  {errorMsg && (
+                    <div role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 md:px-4 py-2.5 md:py-3 text-xs md:text-sm text-red-700">
+                      {errorMsg}
+                    </div>
+                  )}
 
                   <button
                     type="submit"
