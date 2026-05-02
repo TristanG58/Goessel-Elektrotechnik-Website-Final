@@ -161,9 +161,9 @@ export const Datenschutz = () => {
       <p className="mb-4">
         <strong>Allgemeine Hinweise</strong><br />
         Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit
-        Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen.
-        Personenbezogene Daten sind alle Daten, mit denen Sie persönlich
-        identifiziert werden können.
+        Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen
+        oder unser Kontaktformular nutzen. Personenbezogene Daten sind alle
+        Daten, mit denen Sie persönlich identifiziert werden können.
       </p>
 
       <h3 className="font-bold text-primary mb-2">2. Verantwortlicher</h3>
@@ -176,40 +176,125 @@ export const Datenschutz = () => {
         E-Mail: info@goessel-elektrotechnik.de
       </p>
 
-      <h3 className="font-bold text-primary mb-2">3. Datenerfassung auf dieser Website</h3>
+      <h3 className="font-bold text-primary mb-2">3. Hosting der Website</h3>
       <p className="mb-4">
-        <strong>Kontaktformular</strong><br />
-        Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre
-        Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen
-        Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von
-        Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne
-        Ihre Einwilligung weiter.
+        Diese Website wird bei der Vercel Inc., 340 S Lemon Ave #4133, Walnut,
+        CA 91789, USA gehostet. Beim Aufruf der Seite werden technisch
+        notwendige Server-Logfiles (IP-Adresse, Datum/Uhrzeit, abgerufene
+        Ressource, Referrer, User-Agent) für maximal 30 Tage gespeichert. Die
+        Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO
+        (berechtigtes Interesse an einer technisch fehlerfreien Darstellung).
+        Mit Vercel besteht ein Auftragsverarbeitungsvertrag (Data Processing
+        Addendum). Datenübermittlungen in die USA sind durch die
+        EU-Standardvertragsklauseln und das EU-US Data Privacy Framework
+        abgesichert.
       </p>
 
+      <h3 className="font-bold text-primary mb-2">4. Kontaktformular &amp; Anfrage-Pipeline</h3>
       <p className="mb-4">
-        Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1
-        lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags
-        zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen
-        erforderlich ist.
+        <strong>Erhobene Daten:</strong> Bei einer Anfrage über unser
+        Kontaktformular erheben wir Name, Telefonnummer, E-Mail-Adresse,
+        Anschrift, Anfragetyp und Ihre Nachricht. Zusätzlich werden technische
+        Metadaten (Zeitstempel, anonymisierte Submission-Kennung) zur
+        Missbrauchs­prävention verarbeitet.
+      </p>
+      <p className="mb-4">
+        <strong>Verarbeitungsweg:</strong> Ihre Eingaben werden über eine
+        verschlüsselte Verbindung an unser Workflow-System übermittelt, das auf
+        einem dedizierten Server bei der Hetzner Online GmbH, Industriestraße
+        25, 91710 Gunzenhausen (Standort Falkenstein, Deutschland) betrieben
+        wird. Von dort werden die Daten in unsere Anfrage-Verwaltung (Google
+        Workspace, siehe Ziffer 5) übernommen.
+      </p>
+      <p className="mb-4">
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
+        (vorvertragliche Maßnahmen / Vertragsanbahnung) sowie Art. 6 Abs. 1
+        lit. f DSGVO (berechtigtes Interesse an Bearbeitung und
+        Missbrauchs­prävention).
+      </p>
+      <p className="mb-4">
+        <strong>Mit Hetzner</strong> besteht ein Auftragsverarbeitungsvertrag.
+        Die Daten verlassen den europäischen Wirtschaftsraum auf diesem
+        Pipeline-Schritt nicht.
       </p>
 
-      <h3 className="font-bold text-primary mb-2">4. Ihre Rechte</h3>
+      <h3 className="font-bold text-primary mb-2">5. Anfrage-Verwaltung über Google Workspace</h3>
       <p className="mb-4">
-        Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft,
-        Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu
-        erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung
-        dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur
-        Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit
-        für die Zukunft widerrufen.
+        Eingehende Anfragen sowie der weitere Schriftverkehr per E-Mail werden
+        in Google Workspace verarbeitet (Google Sheets als Anfrage-Liste,
+        Gmail für E-Mail-Korrespondenz). Anbieter ist die Google Ireland
+        Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+      </p>
+      <p className="mb-4">
+        <strong>Zweck:</strong> Bearbeitung Ihrer Anfrage, Terminvereinbarung,
+        Dokumentation der Geschäftsbeziehung.<br />
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
+        (Vertragsanbahnung / Vertragserfüllung). Soweit Daten nach
+        Vertragsabschluss zu Buchungs- und Steuerzwecken weiter aufbewahrt
+        werden, beruht dies auf Art. 6 Abs. 1 lit. c DSGVO i.V.m. § 147 AO,
+        § 257 HGB.
+      </p>
+      <p className="mb-4">
+        Mit Google besteht ein Auftragsverarbeitungsvertrag. Übertragungen in
+        Drittländer sind durch EU-Standardvertragsklauseln und das EU-US Data
+        Privacy Framework abgesichert.
       </p>
 
-      <h3 className="font-bold text-primary mb-2">5. Google Maps</h3>
-      <p>
+      <h3 className="font-bold text-primary mb-2">6. SMS-Terminbestätigung über seven.io</h3>
+      <p className="mb-4">
+        Sobald ein Termin verbindlich vereinbart wurde, senden wir Ihnen eine
+        SMS-Bestätigung mit Datum und Uhrzeit. Für den SMS-Versand nutzen wir
+        die seven.io GmbH, Ernst-Augustin-Straße 2, 12489 Berlin, Deutschland.
+        Übertragen werden ausschließlich Ihre Mobilfunknummer sowie der für
+        die Bestätigung notwendige Text (Termin, Auftragsbezug).
+      </p>
+      <p className="mb-4">
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
+        (Vertragserfüllung — Terminvereinbarung). Mit seven.io besteht ein
+        Auftragsverarbeitungsvertrag.
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">7. Google Maps</h3>
+      <p className="mb-4">
         Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google
-        Ireland Limited („Google"), Gordon House, Barrow Street, Dublin 4,
-        Irland. Zur Nutzung der Funktionen von Google Maps ist es notwendig,
-        Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an
-        einen Server von Google in den USA übertragen und dort gespeichert.
+        Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Zur
+        Darstellung der Karte wird Ihre IP-Adresse an Google übertragen und
+        kann dort gespeichert werden. Die Verarbeitung erfolgt auf Grundlage
+        Ihrer Einwilligung, soweit diese abgefragt wird, andernfalls auf
+        Grundlage unseres berechtigten Interesses an einer komfortablen
+        Standort-Anzeige (Art. 6 Abs. 1 lit. a bzw. lit. f DSGVO).
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">8. Speicherdauer &amp; Löschung</h3>
+      <p className="mb-4">
+        Anfragedaten ohne Folgeauftrag werden spätestens 6 Monate nach dem
+        letzten Kontakt gelöscht. Daten aus zustandegekommenen
+        Geschäftsbeziehungen werden für die Dauer der gesetzlichen
+        Aufbewahrungs­fristen (in der Regel 6 bzw. 10 Jahre nach § 147 AO /
+        § 257 HGB) aufbewahrt und anschließend gelöscht. Server-Logfiles
+        werden nach maximal 30 Tagen gelöscht.
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">9. Ihre Rechte</h3>
+      <p className="mb-4">
+        Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO),
+        Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der
+        Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie auf
+        Widerspruch gegen Verarbeitungen, die auf einem berechtigten Interesse
+        beruhen (Art. 21 DSGVO). Erteilte Einwilligungen können Sie jederzeit
+        mit Wirkung für die Zukunft widerrufen.
+      </p>
+      <p className="mb-4">
+        Zur Ausübung Ihrer Rechte genügt eine formlose Mitteilung an die unter
+        Ziffer 2 genannten Kontaktdaten.
+      </p>
+      <p>
+        <strong>Beschwerderecht:</strong> Unbeschadet anderweitiger
+        Rechtsbehelfe steht Ihnen ein Beschwerderecht bei einer
+        Datenschutz-Aufsichtsbehörde zu, insbesondere bei der für uns
+        zuständigen Landesbeauftragten für Datenschutz und
+        Informationsfreiheit Nordrhein-Westfalen, Kavalleriestr. 2–4, 40213
+        Düsseldorf.
       </p>
     </Modal>
   )
