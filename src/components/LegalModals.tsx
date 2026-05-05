@@ -217,6 +217,16 @@ export const Datenschutz = () => {
         Die Daten verlassen den europäischen Wirtschaftsraum auf diesem
         Pipeline-Schritt nicht.
       </p>
+      <p className="mb-4">
+        <strong>Zugriff durch den Service-Anbieter:</strong> Zur Bearbeitung
+        und zum Management Ihrer Anfrage hat der von uns beauftragte
+        Service-Anbieter (KAIROS Digital, Mühlendorf 16, 58809 Neuenrade)
+        technisch authentifizierten Lese- und Schreibzugriff auf das
+        Anfrage-Verwaltungs-System. Dieser Zugriff erfolgt ausschließlich zur
+        Auftragsdurchführung und ist in unseren Workspace-Audit-Logs
+        dokumentiert. Mit dem Service-Anbieter besteht ein
+        Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.
+      </p>
 
       <h3 className="font-bold text-primary mb-2">5. Anfrage-Verwaltung über Google Workspace</h3>
       <p className="mb-4">
@@ -254,18 +264,105 @@ export const Datenschutz = () => {
         Auftragsverarbeitungsvertrag.
       </p>
 
-      <h3 className="font-bold text-primary mb-2">7. Google Maps</h3>
+      <h3 className="font-bold text-primary mb-2">7. Google Maps (mit Einwilligungs-Pattern)</h3>
       <p className="mb-4">
-        Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google
-        Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Zur
-        Darstellung der Karte wird Ihre IP-Adresse an Google übertragen und
-        kann dort gespeichert werden. Die Verarbeitung erfolgt auf Grundlage
-        Ihrer Einwilligung, soweit diese abgefragt wird, andernfalls auf
-        Grundlage unseres berechtigten Interesses an einer komfortablen
-        Standort-Anzeige (Art. 6 Abs. 1 lit. a bzw. lit. f DSGVO).
+        Diese Seite zeigt zur Standort-Information eine Google-Maps-Karte.
+        Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street,
+        Dublin 4, Irland.
+      </p>
+      <p className="mb-4">
+        <strong>Zwei-Klick-Schutz:</strong> Die Karte wird standardmäßig{' '}
+        <em>nicht</em> geladen. Stattdessen sehen Sie einen Platzhalter mit
+        Adresse und einem Button „Karte aktivieren". Erst nach Ihrem aktiven
+        Klick wird die Karte tatsächlich von Google geladen. Bis dahin werden
+        keine Daten an Google übertragen.
+      </p>
+      <p className="mb-4">
+        <strong>Verarbeitete Daten:</strong> Bei aktivierter Karte überträgt
+        Ihr Browser u.&nbsp;a. Ihre IP-Adresse, User-Agent und die aufgerufene
+        Seite an Google. Übertragungen können in Drittländer (USA) erfolgen,
+        abgesichert durch EU-Standardvertragsklauseln und das EU-US Data
+        Privacy Framework.
+      </p>
+      <p className="mb-4">
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO
+        (Einwilligung). Sie können die Einwilligung jederzeit widerrufen,
+        indem Sie den Browser-Speicher dieser Seite leeren oder uns kontaktieren.
       </p>
 
-      <h3 className="font-bold text-primary mb-2">8. Speicherdauer &amp; Löschung</h3>
+      <h3 className="font-bold text-primary mb-2">8. Web-Analyse (Vercel Analytics, cookieless)</h3>
+      <p className="mb-4">
+        Zur statistischen Reichweiten-Messung nutzen wir Vercel Web Analytics.
+        Anbieter ist die Vercel Inc., 340 S Lemon Ave #4133, Walnut,
+        CA 91789, USA. Vercel Analytics arbeitet <strong>cookieless</strong>{' '}
+        und ohne langfristige Wiedererkennung einzelner Besucher.
+      </p>
+      <p className="mb-4">
+        <strong>Erfasste Daten:</strong> aufgerufene Seite, Referrer (vorherige
+        Seite), grobe geografische Region (Land), Endgerät-Typ (Desktop /
+        Mobile), Browser-Familie. <strong>Keine Cookies</strong>, keine
+        Speicherung Ihrer IP-Adresse in vollständiger Form, keine
+        Wiedererkennung über die Session hinaus.
+      </p>
+      <p className="mb-4">
+        Aufgrund der weitreichenden Anonymisierung sind die so erhobenen Daten
+        regelmäßig nicht mehr personenbezogen i.&nbsp;S.&nbsp;v. Art. 4 DSGVO.
+        Soweit eine Verarbeitung dennoch unter die DSGVO fällt, beruht sie auf
+        Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+        bedarfsgerechten Gestaltung unseres Online-Angebots).
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">9. Cookies und lokale Speicherung</h3>
+      <p className="mb-4">
+        Diese Website setzt nur Cookies bzw. Browser-Speicher in folgenden
+        Fällen:
+      </p>
+      <ul className="list-disc pl-5 mb-4 space-y-1">
+        <li>
+          <strong>Technisch notwendige Speicherung</strong> für die
+          Bot-Schutz-Mechanismen unseres Kontaktformulars (Honeypot, Time-Trap,
+          Sicherheits-Header). Ohne diese ist eine Form-Abgabe technisch nicht
+          möglich. Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG (zwingend
+          erforderlich), Art. 6 Abs. 1 lit. f DSGVO.
+        </li>
+        <li>
+          <strong>Maps-Einwilligungs-Speicher</strong> (siehe Ziffer 7): bei
+          aktiver Einwilligung in die Maps-Einbindung wird ein Eintrag im
+          Browser-Speicher (localStorage) gesetzt, damit Sie bei späteren
+          Besuchen nicht erneut klicken müssen. Rechtsgrundlage: § 25 Abs. 1
+          TDDDG (Einwilligung).
+        </li>
+      </ul>
+      <p className="mb-4">
+        Es werden <strong>keine</strong> Marketing-, Tracking- oder
+        Profiling-Cookies gesetzt. Es gibt keine Pixel von Drittanbietern (z.&nbsp;B.
+        Facebook, LinkedIn, TikTok).
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">10. Anonymisierte Auswertung zu Service-Verbesserungs-Zwecken</h3>
+      <p className="mb-4">
+        Aggregierte, vollständig anonymisierte Statistiken über die Nutzung
+        des Anfrage-Systems (z.&nbsp;B. Anzahl Anfragen pro Monat, durchschnittliche
+        Antwortzeiten, Conversion-Quoten) können vom Service-Anbieter (KAIROS
+        Digital) zur Verbesserung des Systems und in nicht-personenbezogener,
+        aggregierter Form für eigene Referenz-Zwecke verwendet werden.
+      </p>
+      <p className="mb-4">
+        <strong>Anonymisierungs-Standard:</strong> Auswertungen erfolgen mit
+        einem Aggregations-Schwellenwert von mindestens fünf Datenpunkten pro
+        Auswertungs-Bucket. Eine Re-Identifikation einzelner Anfragesteller
+        oder einzelner Anfragen ist dadurch nicht möglich. Es werden{' '}
+        <strong>keine personenbezogenen Daten</strong> im Sinne der DSGVO an
+        den Service-Anbieter zu Marketing-Zwecken übermittelt.
+      </p>
+      <p className="mb-4">
+        Da diese Auswertungen ausschließlich auf nicht-personenbezogenen,
+        aggregierten Daten beruhen, fallen sie nicht in den Anwendungsbereich
+        der DSGVO. Eine Einwilligung der einzelnen Anfragesteller ist daher
+        nicht erforderlich.
+      </p>
+
+      <h3 className="font-bold text-primary mb-2">11. Speicherdauer &amp; Löschung</h3>
       <p className="mb-4">
         Anfragedaten ohne Folgeauftrag werden spätestens 6 Monate nach dem
         letzten Kontakt gelöscht. Daten aus zustandegekommenen
@@ -275,7 +372,7 @@ export const Datenschutz = () => {
         werden nach maximal 30 Tagen gelöscht.
       </p>
 
-      <h3 className="font-bold text-primary mb-2">9. Ihre Rechte</h3>
+      <h3 className="font-bold text-primary mb-2">12. Ihre Rechte</h3>
       <p className="mb-4">
         Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO),
         Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der
